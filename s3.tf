@@ -1,7 +1,3 @@
-provider "aws" {
-  region = "us-east-1"  # Change to your preferred AWS region
-}
-
 # 1️⃣ Create an S3 bucket
 resource "aws_s3_bucket" "jenkins_s3_bucket" {
   bucket = "my-unique-jenkins-s3-bucket"  # Change to a globally unique name
