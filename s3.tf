@@ -12,10 +12,6 @@ resource "aws_s3_object" "upload_file" {
   acl    = "private"     # Adjust ACL as needed
 }
 
-resource "aws_s3_bucket" "jenkins_s3_bucket" {
-  bucket = "my-unique-jenkins-s3-bucket"
-}
-
 resource "aws_s3_bucket_acl" "jenkins_s3_acl" {
   bucket = aws_s3_bucket.jenkins_s3_bucket.id
   acl    = "private"
