@@ -1,19 +1,17 @@
 provider "aws" {
-  region = "us-east-1"
-  alias  = "s3"
+  region = "us-east-1"  # Change to your preferred AWS region
 }
 
+# 1️⃣ Create an S3 bucket
 resource "aws_s3_bucket" "jenkins_s3_bucket" {
-  bucket = "my-unique-jenkins-s3-bucket" 
-
-  tags = {
-    Name        = "jenkins S3 Bucket"
-  }
+  bucket = "my-unique-jenkins-s3-bucket"  # Change to a globally unique name
+  acl    = "private"
 }
 
-resource "aws_s3_bucket" "upload_file" {
-  bucket = aws_s3_bucket.jenkins_s3_bucket.id
-  key    = "myfile.txt"  
-  source = "myfile.txt"  
-  acl    = "private"
+# 2️⃣ Upload a file to the S3 bucket
+resource "aws_s3_object" "upload_file" {
+  bucket = aws_s3_bucket.jenkins_s3_bucket.id  # Reference the S3 bucket
+  key    = "myfile.txt"  # Name of the file in S3
+  source = "myfile.txt"  # Local file to upload
+  acl    = "private"     # Adjust ACL as needed
 }
